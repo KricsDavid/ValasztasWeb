@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Reflection.Metadata.Ecma335;
 using Valasztas.Models;
 
 namespace Valasztas.Pages
@@ -25,8 +26,23 @@ namespace Valasztas.Pages
         }
 
 
+        public async Task<IActionResult> OnPostAsync() {
+           
+            return Page();
+
+            }
 
 
 
-    }
+        var UploadFilePath = Path.Combine(_env.ContentRootPath, "uploads", UploadFile.FileName);
+            using (var stream = new FileStream(UploadFilePath, FileMode.Create))
+            {
+                return Page();
+    await UploadFile.CopyToAsync(stream);
 }
+                
+        }
+
+       
+    }
+
