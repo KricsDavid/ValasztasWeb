@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.IO;
 using System.Reflection.Metadata.Ecma335;
 using Valasztas.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Valasztas.Pages
 {
@@ -25,6 +26,7 @@ namespace Valasztas.Pages
         {
             _context = context;
             _env = env;
+            //_context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
         public void OnGet()
@@ -39,8 +41,25 @@ namespace Valasztas.Pages
             {
                 await UploadFile.CopyToAsync(stream);
             }
-            
 
+            StreamReader sr = new StreamReader(UploadFilePath);
+
+            while (!sr.EndOfStream)
+            {
+
+
+                var part = sr.ReadLine().Split()[4];
+                if (!_context.Partok.Select(x => x.rovidnev).Contains(part))
+                {
+                    _context.Partok.Add(new Part { rovidnev = part });
+
+                }
+               
+
+            }
+            sr.Close();
+
+            _context.SaveChanges();
 
 
             return Page();

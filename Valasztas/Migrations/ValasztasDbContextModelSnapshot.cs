@@ -25,7 +25,7 @@ namespace Valasztas.Migrations
                     b.Property<int>("Kerulet")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Partrovidnev")
+                    b.Property<string>("PartRovidNev")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -38,7 +38,7 @@ namespace Valasztas.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("Partrovidnev");
+                    b.HasIndex("PartRovidNev");
 
                     b.ToTable("Jeloltek");
                 });
@@ -60,7 +60,7 @@ namespace Valasztas.Migrations
                 {
                     b.HasOne("Valasztas.Models.Part", "Part")
                         .WithMany("Jeloltek")
-                        .HasForeignKey("Partrovidnev")
+                        .HasForeignKey("PartRovidNev")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

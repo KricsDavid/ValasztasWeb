@@ -10,8 +10,8 @@ using Valasztas.Models;
 namespace Valasztas.Migrations
 {
     [DbContext(typeof(ValasztasDbContext))]
-    [Migration("20240925092950_sqlite.local_migration_667")]
-    partial class sqlitelocal_migration_667
+    [Migration("20240926074651_sqlite.local_migration_566")]
+    partial class sqlitelocal_migration_566
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,7 +28,7 @@ namespace Valasztas.Migrations
                     b.Property<int>("Kerulet")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Partrovidnev")
+                    b.Property<string>("PartRovidNev")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -41,7 +41,7 @@ namespace Valasztas.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("Partrovidnev");
+                    b.HasIndex("PartRovidNev");
 
                     b.ToTable("Jeloltek");
                 });
@@ -63,7 +63,7 @@ namespace Valasztas.Migrations
                 {
                     b.HasOne("Valasztas.Models.Part", "Part")
                         .WithMany("Jeloltek")
-                        .HasForeignKey("Partrovidnev")
+                        .HasForeignKey("PartRovidNev")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

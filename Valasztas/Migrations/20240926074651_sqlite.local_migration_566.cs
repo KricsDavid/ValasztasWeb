@@ -5,7 +5,7 @@
 namespace Valasztas.Migrations
 {
     /// <inheritdoc />
-    public partial class sqlitelocal_migration_667 : Migration
+    public partial class sqlitelocal_migration_566 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -31,23 +31,23 @@ namespace Valasztas.Migrations
                     name = table.Column<string>(type: "TEXT", nullable: false),
                     Kerulet = table.Column<int>(type: "INTEGER", nullable: false),
                     szavazatszam = table.Column<int>(type: "INTEGER", nullable: false),
-                    Partrovidnev = table.Column<string>(type: "TEXT", nullable: false)
+                    PartRovidNev = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Jeloltek", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Jeloltek_Partok_Partrovidnev",
-                        column: x => x.Partrovidnev,
+                        name: "FK_Jeloltek_Partok_PartRovidNev",
+                        column: x => x.PartRovidNev,
                         principalTable: "Partok",
                         principalColumn: "rovidnev",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Jeloltek_Partrovidnev",
+                name: "IX_Jeloltek_PartRovidNev",
                 table: "Jeloltek",
-                column: "Partrovidnev");
+                column: "PartRovidNev");
         }
 
         /// <inheritdoc />
