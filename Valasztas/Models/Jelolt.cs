@@ -9,6 +9,8 @@
         public string name { get; set; }
         public int Kerulet { get; set; }
         public int szavazatszam { get; set; }
+
+        public string PartRovidNev { get; set; }
         public Part Part { get; set; }
     }
 }
