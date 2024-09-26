@@ -6,7 +6,7 @@
         {
         }
         public int id { get; set; }
-        public string name { get; set; }
+        public string Nev { get; set; }
         public int Kerulet { get; set; }
         public int szavazatszam { get; set; }
 

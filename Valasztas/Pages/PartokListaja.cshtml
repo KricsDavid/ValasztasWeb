@@ -1,0 +1,36 @@
+﻿@page
+@model Valasztas.Pages.PartokListajaModel
+
+@{
+    ViewData["Title"] = "PartokListaja";
+}
+
+<h1>PartokListaja</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Part[0].hosszunev)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Part) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.hosszunev)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.rovidnev">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.rovidnev">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.rovidnev">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

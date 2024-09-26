@@ -43,7 +43,7 @@ namespace Valasztas.Pages
             }
 
             StreamReader sr = new StreamReader(UploadFilePath);
-
+            List<Part > partok = new List<Part>();
             while (!sr.EndOfStream)
             {
 
@@ -58,6 +58,25 @@ namespace Valasztas.Pages
 
             }
             sr.Close();
+            foreach (var p in partok)
+            {
+                _context.Partok.Add(p);
+            }
+
+            sr = new StreamReader(UploadFilePath);
+            while (!sr.EndOfStream)
+            {
+                var sor = sr.ReadLine();
+                var elemek = sor.Split();
+                Jelolt ujJelolt = new Jelolt();
+                ujJelolt.Kerulet = int.Parse(elemek[0]);
+                ujJelolt.szavazatszam = int.Parse(elemek[1]);
+                ujJelolt.Nev = elemek[2]+ " " + elemek[3];
+                ujJelolt.PartRovidNev = elemek[4];
+
+                _context.Jeloltek.Add(ujJelolt);
+            }
+
 
             _context.SaveChanges();
 
